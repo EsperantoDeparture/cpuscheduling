@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, AlgorithmSelectionComponent, HeaderComponent],
