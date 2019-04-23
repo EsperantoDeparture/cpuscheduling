@@ -1,0 +1,62 @@
+<mat-toolbar *ngIf="router.url != '/login'">
+  <div @fadeInOut *ngIf="page && !menuExpanded" matTooltip="{{ pageFull }}">
+      {{ page }}
+  </div>
+  <div @fadeInOut *ngIf="!menuExpanded">
+      <button
+          mat-button
+          mat-raised-button
+          mat-icon-button
+          (click)="menuExpanded = true"
+          color="primary"
+          matTooltip="Abrir menú"
+      >
+          <mat-icon svgIcon="more_horiz"></mat-icon>
+      </button>
+  </div>
+  <div @fadeInOut *ngIf="menuExpanded">
+      <button
+          mat-button
+          mat-raised-button
+          mat-icon-button
+          routerLink="/dashboard"
+          matTooltip="Volver al inicio"
+      >
+          <mat-icon svgIcon="home"></mat-icon>
+      </button>
+  </div>
+  <div @fadeInOut *ngIf="menuExpanded">
+      <button
+          mat-button
+          mat-raised-button
+          mat-icon-button
+          matTooltip="Página anterior"
+          (click)="location.back()"
+      >
+          <mat-icon svgIcon="navigate_before"></mat-icon>
+      </button>
+  </div>
+  <div @fadeInOut *ngIf="menuExpanded">
+      <button
+          mat-button
+          mat-raised-button
+          mat-icon-button
+          matTooltip="Página siguiente"
+          (click)="location.forward()"
+      >
+          <mat-icon svgIcon="navigate_next"></mat-icon>
+      </button>
+  </div>
+  <div @fadeInOut *ngIf="menuExpanded">
+      <button
+          mat-button
+          mat-raised-button
+          mat-icon-button
+          color="warn"
+          matTooltip="Cerrar menú"
+          (click)="menuExpanded = false"
+      >
+          <mat-icon svgIcon="close"></mat-icon>
+      </button>
+  </div>
+</mat-toolbar>
