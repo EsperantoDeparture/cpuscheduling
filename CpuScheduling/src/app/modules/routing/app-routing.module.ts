@@ -10,7 +10,7 @@ const routes: Routes = [
     component: AlgorithmSelectionComponent
   },
   {
-    path: 'sjf-form',
+    path: 'sjf-input-form',
     component: SjfInputFormComponent
   },
   {

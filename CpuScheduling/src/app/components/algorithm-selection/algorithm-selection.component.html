@@ -1,3 +1,14 @@
-<p>
-  algorithm-selection works!
-</p>
+<mat-grid-list [cols]="cols" rowHeight="170">
+  <mat-grid-tile @fadeIn>
+    <mat-card routerLink="/sjf-input-form">
+      <mat-card-title class="card-title">Shortest Job First</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile @fadeIn>
+    <mat-card routerLink="/fcfs-input-form">
+      <mat-card-title class="card-title"
+        >First Come First Served</mat-card-title
+      >
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

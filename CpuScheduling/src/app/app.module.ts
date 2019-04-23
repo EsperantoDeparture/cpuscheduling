@@ -7,6 +7,7 @@ import { AppRoutingModule } from './modules/routing/app-routing.module';
 import { AppComponent } from './components/home/app.component';
 import { AlgorithmSelectionComponent } from './components/algorithm-selection/algorithm-selection.component';
 import { ShortestJobFirstModule } from './modules/shortest-job-first/shortest-job-first.module';
+import { MatCardModule, MatGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,10 @@ import { ShortestJobFirstModule } from './modules/shortest-job-first/shortest-jo
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ShortestJobFirstModule
+    ShortestJobFirstModule,
+    MatCardModule,
+    MatGridListModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
