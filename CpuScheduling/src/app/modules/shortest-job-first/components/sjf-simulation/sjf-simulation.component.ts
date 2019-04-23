@@ -76,7 +76,7 @@ export class SjfSimulationComponent implements OnInit {
       });
       currentProcess.turnAroundTime +=
         currentProcess.burstTime > burst
-          ? currentProcess.burstTime - burst
+          ? burst
           : currentProcess.burstTime;
       currentProcess.burstTime =
         currentProcess.burstTime > burst ? currentProcess.burstTime - burst : 0;
