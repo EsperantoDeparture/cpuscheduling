@@ -1,3 +1,38 @@
-<p>
-  sjf-simulation works!
-</p>
+<table class="table" *ngIf="processes">
+  <thead>
+    <tr>
+      <th>Proceso</th>
+      <th>Tiempo de ráfaga</th>
+      <th>Tiempo de llegada</th>
+      <th>Tiempo de espera</th>
+      <th>Tiempo de entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let process of processes">
+      <td>{{ process.name }}</td>
+      <td>{{ process.burstTime }}</td>
+      <td>{{ process.arrivalTime }}</td>
+      <td>{{ process.waitingTime }}</td>
+      <td>{{ process.turnAroundTime }}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Tiempo de entrega promedio:</th>
+      <td colspan="4">{{ averageTurnaroundTime }}</td>
+    </tr>
+  </tfoot>
+</table>
+<h2>Diagrama de Gantt</h2>
+<table class="gantt">
+  <tr>
+    <td>|0|</td>
+    <td *ngFor="let g of gantt">|{{ g.burst }}|</td>
+  </tr>
+  <tr>
+    <td [ngStyle]="{ 'text-align': 'right' }" *ngFor="let g of gantt">
+      {{ g.name }}
+    </td>
+  </tr>
+</table>
