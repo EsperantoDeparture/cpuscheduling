@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FirstComeFirstServedModule } from './modules/first-come-first-served/first-come-first-served.module';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    FirstComeFirstServedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
