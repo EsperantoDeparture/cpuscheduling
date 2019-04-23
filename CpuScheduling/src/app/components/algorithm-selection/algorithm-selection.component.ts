@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  animate,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-algorithm-selection',
   templateUrl: './algorithm-selection.component.html',
-  styleUrls: ['./algorithm-selection.component.scss'],animations: [
+  styleUrls: ['./algorithm-selection.component.scss'],
+  animations: [
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: '0', height: 0 }),
@@ -29,7 +25,5 @@ export class AlgorithmSelectionComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
