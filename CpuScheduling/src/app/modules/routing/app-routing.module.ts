@@ -5,6 +5,8 @@ import { SjfInputFormComponent } from '../shortest-job-first/components/forms/sj
 import { SjfSimulationComponent } from '../shortest-job-first/components/sjf-simulation/sjf-simulation.component';
 import { FcfsInputFormComponent } from '../first-come-first-served/components/forms/fcfs-input-form/fcfs-input-form.component';
 import { FcfsSimulationComponent } from '../first-come-first-served/components/fcfs-simulation/fcfs-simulation.component';
+import { RoundRobinComponent } from '../round-robin/components/round-robin/round-robin.component';
+import { RrInputFormComponent } from '../round-robin/components/forms/rr-input-form/rr-input-form.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'fcfs',
     component: FcfsSimulationComponent
+  },
+  {
+    path: 'round-robin',
+    component: RoundRobinComponent
+  },
+  {
+    path: 'rr-input-form',
+    component: RrInputFormComponent
   }
 ];
 
@@ -33,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

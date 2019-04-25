@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-content>
+    <table>
+      <thead>
+        <tr>
+          <th>Proceso</th>
+          <th>Tiempo de ráfaga</th>
+          <th>Tiempo de llegada</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let process of processes; let i = index">
+        <td>
+          <button
+            mat-icon-button
+            mat-raised-button
+            color="warn"
+            (click)="remove(i)"
+            matTooltip="Remover este proceso"
+            [ngStyle]="{ 'margin-right': '5px' }"
+          >
+            <mat-icon svgIcon="remove"></mat-icon>
+          </button>
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="process.name" name="pname"
+          /></mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              min="1"
+              [(ngModel)]="process.burstTime"
+              name="pbursttime"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              min="0"
+              [(ngModel)]="process.arrivalTime"
+              name="parrivaltime"
+          /></mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <mat-form-field>
+      <input
+        matInput
+        type="number"
+        min="1"
+        placeholder="Quantum"
+        [(ngModel)]="quantum"
+        name="pbursttime"
+      />
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions
+    ><button
+      mat-icon-button
+      mat-raised-button
+      color="accent"
+      (click)="rr()"
+      matTooltip="Iniciar SJF"
+    >
+      <mat-icon svgIcon="check"></mat-icon></button
+    ><button
+      mat-icon-button
+      mat-raised-button
+      color="primary"
+      (click)="add()"
+      matTooltip="Agregar nuevo proceso"
+    >
+      <mat-icon svgIcon="add"></mat-icon></button
+  ></mat-card-actions>
+</mat-card>
