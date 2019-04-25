@@ -77,10 +77,8 @@ export class SjfSimulationComponent implements OnInit {
       const currentProcess = this.processes.find(
         p => p.burstTime === minimumBurstTime
       );
-      console.log(currentProcess.name);
       let burst = this.getBurst();
       burst = burst !== -1 ? burst : currentProcess.burstTime;
-      console.log(burst);
       this.gantt.push({
         name: currentProcess.name,
         burst:
@@ -103,7 +101,6 @@ export class SjfSimulationComponent implements OnInit {
         }
       }
     }
-    console.log('Waiting time, turaround time');
     let i = 0;
     for (const process of this.processes) {
       process.burstTime = this.processesCopy[i].burstTime;
@@ -116,10 +113,7 @@ export class SjfSimulationComponent implements OnInit {
       this.processes.map(p => p.turnAroundTime).reduce((v1, v2) => v1 + v2) /
       this.processes.length;
     // Fix gantt diagram
-    for (let j = 0; j < this.gantt.length; j++) {
-      if (j === 0) {
-        continue;
-      }
+    for (let j = 1; j < this.gantt.length; j++) {
       this.gantt[j].burst += this.gantt[j - 1].burst;
     }
   }
