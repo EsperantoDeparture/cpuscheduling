@@ -23,7 +23,7 @@ export class SjfSimulationComponent implements OnInit {
     waitingTime: number;
     turnAroundTime: number;
   }[];
-  gantt: { name: string; burst: number, color: string }[] = [];
+  gantt: { name: string; burst: number; color: string }[] = [];
   averageTurnaroundTime: number;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -50,7 +50,10 @@ export class SjfSimulationComponent implements OnInit {
 
           return 0;
         });
-        const palette = distinctColors({count: this.processes.length, lightMin: 25});
+        const palette = distinctColors({
+          count: this.processes.length,
+          lightMin: 30
+        });
         for (let i = 0; i < this.processes.length; i++) {
           this.processes[i].color = `rgb(${palette[i]._rgb[0]},${
             palette[i]._rgb[1]

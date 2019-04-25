@@ -51,7 +51,7 @@ export class FcfsSimulationComponent implements OnInit {
         });
         const palette = distinctColors({
           count: this.processes.length,
-          lightMin: 25
+          lightMin: 30
         });
         for (let i = 0; i < this.processes.length; i++) {
           this.processes[i].color = `rgb(${palette[i]._rgb[0]},${
