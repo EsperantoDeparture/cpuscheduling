@@ -1,38 +1,70 @@
-<table class="table" *ngIf="processes">
-  <thead>
-    <tr>
-      <th>Proceso</th>
-      <th>Tiempo de ráfaga</th>
-      <th>Tiempo de llegada</th>
-      <th>Tiempo de espera</th>
-      <th>Tiempo de entrega</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let process of processes">
-      <td>{{ process.name }}</td>
-      <td>{{ process.burstTime }}</td>
-      <td>{{ process.arrivalTime }}</td>
-      <td>{{ process.waitingTime }}</td>
-      <td>{{ process.turnAroundTime }}</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th>Tiempo de entrega promedio:</th>
-      <td colspan="4">{{ averageTurnaroundTime }}</td>
-    </tr>
-  </tfoot>
-</table>
-<h2>Diagrama de Gantt</h2>
-<table class="gantt">
-  <tr>
-    <td>|0|</td>
-    <td *ngFor="let g of gantt">|{{ g.burst }}|</td>
-  </tr>
-  <tr>
-    <td [ngStyle]="{ 'text-align': 'right' }" *ngFor="let g of gantt">
-      {{ g.name }}
-    </td>
-  </tr>
-</table>
+<mat-card>
+  <mat-card-title>SJF</mat-card-title>
+  <mat-card-content>
+    <table class="table" *ngIf="processes">
+      <thead>
+        <tr>
+          <th>Proceso</th>
+          <th>Tiempo de ráfaga</th>
+          <th>Tiempo de llegada</th>
+          <th>Tiempo de espera</th>
+          <th>Tiempo de entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let process of processes">
+          <td [ngStyle]="{ color: process.color }">{{ process.name }}</td>
+          <td>{{ process.burstTime }}</td>
+          <td>{{ process.arrivalTime }}</td>
+          <td>{{ process.waitingTime }}</td>
+          <td>{{ process.turnAroundTime }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Tiempo de entrega promedio:</th>
+          <td colspan="4">{{ averageTurnaroundTime }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <h2>Diagrama de Gantt</h2>
+    <table *ngIf="gantt.length" class="gantt">
+      <tr>
+        <td
+          [ngStyle]="{
+            width: ((25 * gantt[0].burst) / 2).toString() + 'px',
+            'text-align': 'left'
+          }"
+        >
+          0
+        </td>
+        <ng-container *ngFor="let g of gantt; let i = index">
+          <td
+            [ngStyle]="{
+              width:
+                i === 0
+                  ? ((25 * g.burst) / 2).toString() + 'px'
+                  : (25 * g.burst).toString() + 'px',
+              'text-align': 'right'
+            }"
+          >
+            {{ g.burst.toString() }}
+          </td>
+        </ng-container>
+      </tr>
+      <tr>
+        <td
+          [attr.colspan]="i === 0 ? 2 : 1"
+          [ngStyle]="{
+            'text-align': 'center',
+            width: (25 * g.burst).toString() + 'px',
+            background: g.color
+          }"
+          *ngFor="let g of gantt; let i = index"
+        >
+          {{ g.name }}
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

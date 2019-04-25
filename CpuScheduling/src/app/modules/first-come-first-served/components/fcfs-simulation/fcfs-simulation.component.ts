@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as distinctColors from 'distinct-colors';
 
 @Component({
   selector: 'app-fcfs-simulation',
@@ -13,6 +14,7 @@ export class FcfsSimulationComponent implements OnInit {
     arrivalTime: number;
     waitingTime: number;
     turnAroundTime: number;
+    color: string;
   }[];
   processesCopy: {
     name: string;
@@ -21,7 +23,7 @@ export class FcfsSimulationComponent implements OnInit {
     waitingTime: number;
     turnAroundTime: number;
   }[];
-  gantt: { name: string; burst: number }[] = [];
+  gantt: { name: string; burst: number; color: string }[] = [];
   averageTurnaroundTime: number;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -47,6 +49,15 @@ export class FcfsSimulationComponent implements OnInit {
 
           return 0;
         });
+        const palette = distinctColors({
+          count: this.processes.length,
+          lightMin: 25
+        });
+        for (let i = 0; i < this.processes.length; i++) {
+          this.processes[i].color = `rgb(${palette[i]._rgb[0]},${
+            palette[i]._rgb[1]
+          },${palette[i]._rgb[2]})`;
+        }
         this.processesCopy = this.processes.map(process => ({ ...process }));
         for (let i = 0; i < this.processes.length; i++) {
           for (let j = 0; j < i; j++) {
@@ -57,7 +68,8 @@ export class FcfsSimulationComponent implements OnInit {
             this.processes[i].waitingTime + this.processes[i].burstTime;
           this.gantt.push({
             name: this.processes[i].name,
-            burst: this.processes[i].burstTime
+            burst: this.processes[i].burstTime,
+            color: this.processes[i].color
           });
         }
         // Fix gantt diagram

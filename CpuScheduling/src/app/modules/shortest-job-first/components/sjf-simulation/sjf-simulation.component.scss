@@ -20,3 +20,8 @@ td {
     color: darken($color: blue, $amount: 15%);
   }
 }
+
+mat-card {
+  width: 90%;
+  margin: 0 auto;
+}
