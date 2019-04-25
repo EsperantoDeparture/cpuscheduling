@@ -75,11 +75,9 @@ export class RoundRobinComponent implements OnInit {
     while (this.processes.some(process => !!process.burstTime) && j < 20) {
       const readyProcesses = this.processes.filter(p => !p.arrivalTime);
       i = j % readyProcesses.length;
-      console.log(i, j, readyProcesses.length, this.quantum);
       const currentProcess = this.processes.find(
         p => p.name === readyProcesses[i].name
       );
-      console.log(readyProcesses[i].name);
       let burst = this.quantum;
       burst =
         burst < currentProcess.burstTime ? burst : currentProcess.burstTime;
