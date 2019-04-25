@@ -25,6 +25,7 @@ export class SjfSimulationComponent implements OnInit {
   }[];
   gantt: { name: string; burst: number; color: string }[] = [];
   averageTurnaroundTime: number;
+  averageWaitingTime: number;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.processes = params['processes']
@@ -111,6 +112,9 @@ export class SjfSimulationComponent implements OnInit {
     }
     this.averageTurnaroundTime =
       this.processes.map(p => p.turnAroundTime).reduce((v1, v2) => v1 + v2) /
+      this.processes.length;
+    this.averageWaitingTime =
+      this.processes.map(p => p.waitingTime).reduce((v1, v2) => v1 + v2) /
       this.processes.length;
     // Fix gantt diagram
     for (let j = 1; j < this.gantt.length; j++) {

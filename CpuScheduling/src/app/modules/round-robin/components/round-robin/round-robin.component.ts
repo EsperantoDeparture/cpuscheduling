@@ -25,6 +25,7 @@ export class RoundRobinComponent implements OnInit {
   }[];
   gantt: { name: string; burst: number; color: string }[] = [];
   averageTurnaroundTime: number;
+  averageWaitingTime: number;
   quantum: number;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -118,6 +119,9 @@ export class RoundRobinComponent implements OnInit {
     }
     this.averageTurnaroundTime =
       this.processes.map(p => p.turnAroundTime).reduce((v1, v2) => v1 + v2) /
+      this.processes.length;
+    this.averageWaitingTime =
+      this.processes.map(p => p.waitingTime).reduce((v1, v2) => v1 + v2) /
       this.processes.length;
     // Fix gantt diagram
     for (j = 1; j < this.gantt.length; j++) {
