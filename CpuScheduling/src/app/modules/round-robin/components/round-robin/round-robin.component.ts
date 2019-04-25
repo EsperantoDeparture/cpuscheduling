@@ -72,12 +72,16 @@ export class RoundRobinComponent implements OnInit {
   rr(): void {
     let i: number;
     let j = 0;
-    while (this.processes.some(process => !!process.burstTime) && j < 20) {
+    while (this.processes.some(process => !!process.burstTime)) {
       const readyProcesses = this.processes.filter(p => !p.arrivalTime);
       i = j % readyProcesses.length;
       const currentProcess = this.processes.find(
         p => p.name === readyProcesses[i].name
       );
+      if (!currentProcess.burstTime) {
+        j++;
+        continue;
+      }
       let burst = this.quantum;
       burst =
         burst < currentProcess.burstTime ? burst : currentProcess.burstTime;
