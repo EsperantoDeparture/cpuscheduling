@@ -33,7 +33,7 @@
       <tr>
         <td
           [ngStyle]="{
-            width: ((25 * gantt[0].burst) / 2).toString() + 'px',
+            width: ((40 * gantt[0].burst) / 2).toString() + 'px',
             'text-align': 'left'
           }"
         >
@@ -44,8 +44,8 @@
             [ngStyle]="{
               width:
                 i === 0
-                  ? ((25 * g.burst) / 2).toString() + 'px'
-                  : (25 * g.burst).toString() + 'px',
+                  ? ((40 * g.burst) / 2).toString() + 'px'
+                  : (40 * g.burst).toString() + 'px',
               'text-align': 'right'
             }"
           >
@@ -58,7 +58,7 @@
           [attr.colspan]="i === 0 ? 2 : 1"
           [ngStyle]="{
             'text-align': 'center',
-            width: (25 * g.burst).toString() + 'px',
+            width: (40 * g.burst).toString() + 'px',
             background: g.color
           }"
           *ngFor="let g of gantt; let i = index"
