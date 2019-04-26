@@ -23,7 +23,7 @@ export class SjfSimulationComponent implements OnInit {
     waitingTime: number;
     turnAroundTime: number;
   }[];
-  gantt: { name: string; burst: number; color: string }[] = [];
+  gantt: { name: string; end: number; color: string; width: number }[] = [];
   averageTurnaroundTime: number;
   averageWaitingTime: number;
   constructor(private activatedRoute: ActivatedRoute) {
@@ -82,9 +82,10 @@ export class SjfSimulationComponent implements OnInit {
       burst = burst !== -1 ? burst : currentProcess.burstTime;
       this.gantt.push({
         name: currentProcess.name,
-        burst:
+        end:
           currentProcess.burstTime > burst ? burst : currentProcess.burstTime,
-        color: currentProcess.color
+        color: currentProcess.color,
+        width: 0
       });
       currentProcess.turnAroundTime +=
         currentProcess.burstTime > burst ? burst : currentProcess.burstTime;
@@ -107,7 +108,6 @@ export class SjfSimulationComponent implements OnInit {
       process.burstTime = this.processesCopy[i].burstTime;
       process.arrivalTime = this.processesCopy[i].arrivalTime;
       process.turnAroundTime += process.waitingTime;
-      console.log(process.name, process.waitingTime, process.turnAroundTime);
       i++;
     }
     this.averageTurnaroundTime =
@@ -116,9 +116,13 @@ export class SjfSimulationComponent implements OnInit {
     this.averageWaitingTime =
       this.processes.map(p => p.waitingTime).reduce((v1, v2) => v1 + v2) /
       this.processes.length;
+    const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
+    for (const g of this.gantt) {
+      g.width = (g.end / burstSum) * 100;
+    }
     // Fix gantt diagram
     for (let j = 1; j < this.gantt.length; j++) {
-      this.gantt[j].burst += this.gantt[j - 1].burst;
+      this.gantt[j].end += this.gantt[j - 1].end;
     }
   }
 

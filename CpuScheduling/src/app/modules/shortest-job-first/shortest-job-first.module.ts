@@ -4,6 +4,7 @@ import { SjfInputFormComponent } from './components/forms/sjf-input-form/sjf-inp
 import { SjfSimulationComponent } from './components/sjf-simulation/sjf-simulation.component';
 import { MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { GanttModule } from '../utils/gantt/gantt.module';
 
 @NgModule({
   declarations: [SjfInputFormComponent, SjfSimulationComponent],
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     MatTooltipModule,
     MatInputModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    GanttModule
   ]
 })
 export class ShortestJobFirstModule { }

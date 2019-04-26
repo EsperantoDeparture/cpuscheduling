@@ -10,6 +10,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { GanttModule } from '../utils/gantt/gantt.module';
 
 @NgModule({
   declarations: [FcfsSimulationComponent, FcfsInputFormComponent],
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    GanttModule
   ]
 })
 export class FirstComeFirstServedModule {}

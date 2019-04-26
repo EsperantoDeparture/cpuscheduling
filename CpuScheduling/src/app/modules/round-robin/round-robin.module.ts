@@ -4,6 +4,7 @@ import { RrInputFormComponent } from './components/forms/rr-input-form/rr-input-
 import { RoundRobinComponent } from './components/round-robin/round-robin.component';
 import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatTooltipModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { GanttModule } from '../utils/gantt/gantt.module';
 
 @NgModule({
   declarations: [RrInputFormComponent, RoundRobinComponent],
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    GanttModule
   ]
 })
 export class RoundRobinModule { }

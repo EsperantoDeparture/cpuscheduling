@@ -1,0 +1,35 @@
+<table class="gantt">
+  <tr>
+    <td
+      [ngStyle]="{
+        width: (data[0].width / 2).toString() + '%',
+        'text-align': 'left'
+      }"
+    >
+      0
+    </td>
+    <ng-container *ngFor="let g of data; let i = index">
+      <td
+        [ngStyle]="{
+          width:
+            i === 0 ? (g.width / 2).toString() + '%' : g.width.toString() + '%',
+          'text-align': 'right'
+        }"
+      >
+        {{ g.end.toString() }}
+      </td>
+    </ng-container>
+  </tr>
+  <tr>
+    <td
+      [attr.colspan]="i === 0 ? 2 : 1"
+      [ngStyle]="{
+        'text-align': 'center',
+        background: g.color
+      }"
+      *ngFor="let g of data; let i = index"
+    >
+      {{ g.name }}
+    </td>
+  </tr>
+</table>

@@ -24,52 +24,17 @@
       <tfoot>
         <tr>
           <th>Tiempo de espera promedio:</th>
-          <td colspan="4">{{ averageWaitingTime }}</td>
+          <td colspan="4">{{ averageWaitingTime | number: '1.0-2' }}</td>
         </tr>
         <tr>
           <th>Tiempo de entrega promedio:</th>
-          <td colspan="4">{{ averageTurnaroundTime }}</td>
+          <td colspan="4">{{ averageTurnaroundTime | number: '1.0-2' }}</td>
         </tr>
       </tfoot>
     </table>
     <h2>Diagrama de Gantt</h2>
-    <table *ngIf="gantt.length" class="gantt">
-      <tr>
-        <td
-          [ngStyle]="{
-            width: ((40 * gantt[0].burst) / 2).toString() + 'px',
-            'text-align': 'left'
-          }"
-        >
-          0
-        </td>
-        <ng-container *ngFor="let g of gantt; let i = index">
-          <td
-            [ngStyle]="{
-              width:
-                i === 0
-                  ? ((40 * g.burst) / 2).toString() + 'px'
-                  : (40 * g.burst).toString() + 'px',
-              'text-align': 'right'
-            }"
-          >
-            {{ g.burst.toString() }}
-          </td>
-        </ng-container>
-      </tr>
-      <tr>
-        <td
-          [attr.colspan]="i === 0 ? 2 : 1"
-          [ngStyle]="{
-            'text-align': 'center',
-            width: (40 * g.burst).toString() + 'px',
-            background: g.color
-          }"
-          *ngFor="let g of gantt; let i = index"
-        >
-          {{ g.name }}
-        </td>
-      </tr>
-    </table>
+    <div *ngIf="gantt && gantt.length > 0">
+      <app-gantt-diagram [data]="gantt"></app-gantt-diagram>
+    </div>
   </mat-card-content>
 </mat-card>

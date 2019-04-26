@@ -23,7 +23,7 @@ export class FcfsSimulationComponent implements OnInit {
     waitingTime: number;
     turnAroundTime: number;
   }[];
-  gantt: { name: string; burst: number; color: string }[] = [];
+  gantt: { name: string; end: number; color: string; width: number }[] = [];
   averageTurnaroundTime: number;
   averageWaitingTime: number;
   constructor(private activatedRoute: ActivatedRoute) {
@@ -69,16 +69,23 @@ export class FcfsSimulationComponent implements OnInit {
             this.processes[i].waitingTime + this.processes[i].burstTime;
           this.gantt.push({
             name: this.processes[i].name,
-            burst: this.processes[i].burstTime,
-            color: this.processes[i].color
+            end: this.processes[i].burstTime,
+            color: this.processes[i].color,
+            width: 0
           });
+        }
+        const burstSum = this.gantt
+          .map(g => g.end)
+          .reduce((v1, v2) => v1 + v2);
+        for (const g of this.gantt) {
+          g.width = (g.end / burstSum) * 100;
         }
         // Fix gantt diagram
         for (let j = 0; j < this.gantt.length; j++) {
           if (j === 0) {
             continue;
           }
-          this.gantt[j].burst += this.gantt[j - 1].burst;
+          this.gantt[j].end += this.gantt[j - 1].end;
         }
         this.averageTurnaroundTime =
           this.processes
