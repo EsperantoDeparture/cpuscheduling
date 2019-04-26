@@ -22,6 +22,7 @@ export class RoundRobinComponent implements OnInit {
     arrivalTime: number;
     waitingTime: number;
     turnAroundTime: number;
+    color: string;
   }[];
   gantt: { name: string; end: number; color: string; width: number }[] = [];
   averageTurnaroundTime: number;
@@ -73,6 +74,8 @@ export class RoundRobinComponent implements OnInit {
   rr(): void {
     let i: number;
     let j = 0;
+    this.processes = this.processesCopy.map(process => ({ ...process }));
+    this.gantt = [];
     while (this.processes.some(process => !!process.burstTime)) {
       const readyProcesses = this.processes.filter(p => !p.arrivalTime);
       i = j % readyProcesses.length;
@@ -127,7 +130,6 @@ export class RoundRobinComponent implements OnInit {
     const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
     for (const g of this.gantt) {
       g.width = (g.end / burstSum) * 100;
-      console.log(g.end, burstSum, g.width);
     }
     // Fix gantt diagram
     for (j = 1; j < this.gantt.length; j++) {

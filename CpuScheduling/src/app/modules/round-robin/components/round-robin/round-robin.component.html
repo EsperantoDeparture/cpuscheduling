@@ -1,6 +1,17 @@
 <mat-card>
   <mat-card-title>Round Robin</mat-card-title>
-  <mat-card-subtitle>Quantum: {{ quantum }}</mat-card-subtitle>
+  <mat-card-subtitle
+    ><mat-form-field>
+      <input
+        matInput
+        type="number"
+        min="1"
+        placeholder="Quantum"
+        [(ngModel)]="quantum"
+        name="quant"
+        (change)="rr()"
+      /> </mat-form-field
+  ></mat-card-subtitle>
   <mat-card-content>
     <table class="table" *ngIf="processes">
       <thead>
