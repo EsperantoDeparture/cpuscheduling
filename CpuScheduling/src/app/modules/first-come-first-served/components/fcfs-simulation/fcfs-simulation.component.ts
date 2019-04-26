@@ -50,15 +50,6 @@ export class FcfsSimulationComponent implements OnInit {
 
           return 0;
         });
-        const palette = distinctColors({
-          count: this.processes.length,
-          lightMin: 30
-        });
-        for (let i = 0; i < this.processes.length; i++) {
-          this.processes[i].color = `rgb(${palette[i]._rgb[0]},${
-            palette[i]._rgb[1]
-          },${palette[i]._rgb[2]})`;
-        }
         this.processesCopy = this.processes.map(process => ({ ...process }));
         for (let i = 0; i < this.processes.length; i++) {
           for (let j = 0; j < i; j++) {
@@ -74,9 +65,7 @@ export class FcfsSimulationComponent implements OnInit {
             width: 0
           });
         }
-        const burstSum = this.gantt
-          .map(g => g.end)
-          .reduce((v1, v2) => v1 + v2);
+        const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
         for (const g of this.gantt) {
           g.width = (g.end / burstSum) * 100;
         }
@@ -99,4 +88,10 @@ export class FcfsSimulationComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  updateColors(colors: any) {
+    for (const process of this.processes) {
+      process.color = colors[process.name];
+    }
+  }
 }

@@ -54,15 +54,6 @@ export class RoundRobinComponent implements OnInit {
 
           return 0;
         });
-        const palette = distinctColors({
-          count: this.processes.length,
-          lightMin: 30
-        });
-        for (let i = 0; i < this.processes.length; i++) {
-          this.processes[i].color = `rgb(${palette[i]._rgb[0]},${
-            palette[i]._rgb[1]
-          },${palette[i]._rgb[2]})`;
-        }
         this.processesCopy = this.processes.map(process => ({ ...process }));
         this.rr();
       }, 100);
@@ -134,6 +125,12 @@ export class RoundRobinComponent implements OnInit {
     // Fix gantt diagram
     for (j = 1; j < this.gantt.length; j++) {
       this.gantt[j].end += this.gantt[j - 1].end;
+    }
+  }
+
+  updateColors(colors: any) {
+    for (const process of this.processes) {
+      process.color = colors[process.name];
     }
   }
 }

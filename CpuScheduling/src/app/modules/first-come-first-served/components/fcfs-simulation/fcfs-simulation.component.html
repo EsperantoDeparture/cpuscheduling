@@ -33,7 +33,11 @@
     </table>
     <h2>Diagrama de Gantt</h2>
     <div *ngIf="gantt && gantt.length > 0">
-      <app-gantt-diagram [data]="gantt"></app-gantt-diagram>
+      <app-gantt-diagram
+        (colorsChanged)="updateColors($event)"
+        [numberOfProcesses]="processes.length"
+        [data]="gantt"
+      ></app-gantt-diagram>
     </div>
   </mat-card-content>
 </mat-card>
