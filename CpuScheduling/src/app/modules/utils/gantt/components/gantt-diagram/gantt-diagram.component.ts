@@ -36,7 +36,7 @@ export class GanttDiagramComponent implements OnInit {
   ) {
     const palette = (this.palette = this.colorService.getPalette({
       count: this.numberOfProcesses,
-      lightMin: 40
+      lightMin: 37
     }));
     const processes = new Set(d.map(dt => dt.name));
     const p: any = [];
