@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RrInputFormComponent } from './components/forms/rr-input-form/rr-input-form.component';
 import { RoundRobinComponent } from './components/round-robin/round-robin.component';
-import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatTooltipModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { GanttModule } from '../utils/gantt/gantt.module';
 
@@ -16,7 +23,8 @@ import { GanttModule } from '../utils/gantt/gantt.module';
     MatInputModule,
     FormsModule,
     MatTooltipModule,
-    GanttModule
+    GanttModule,
+    MatProgressSpinnerModule
   ]
 })
-export class RoundRobinModule { }
+export class RoundRobinModule {}

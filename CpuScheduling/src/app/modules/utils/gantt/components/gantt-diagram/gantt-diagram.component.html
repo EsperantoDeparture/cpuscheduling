@@ -1,35 +1,43 @@
-<table class="gantt">
-  <tr>
-    <td
-      [ngStyle]="{
-        width: (data[0].width / 2).toString() + '%',
-        'text-align': 'left'
-      }"
-    >
-      0
-    </td>
-    <ng-container *ngFor="let g of data; let i = index">
+<div *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!loading">
+  <table class="gantt">
+    <tr>
       <td
         [ngStyle]="{
-          width:
-            i === 0 ? (g.width / 2).toString() + '%' : g.width.toString() + '%',
-          'text-align': 'right'
+          width: (data[0].width / 2).toString() + '%',
+          'text-align': 'left'
         }"
       >
-        {{ g.end.toString() }}
+        0
       </td>
-    </ng-container>
-  </tr>
-  <tr>
-    <td
-      [attr.colspan]="i === 0 ? 2 : 1"
-      [ngStyle]="{
-        'text-align': 'center',
-        background: g.color
-      }"
-      *ngFor="let g of data; let i = index"
-    >
-      {{ g.name }}
-    </td>
-  </tr>
-</table>
+      <ng-container *ngFor="let g of data; let i = index">
+        <td
+          [ngStyle]="{
+            width:
+              i === 0
+                ? (g.width / 2).toString() + '%'
+                : g.width.toString() + '%',
+            'text-align': 'right'
+          }"
+        >
+          {{ g.end.toString() }}
+        </td>
+      </ng-container>
+    </tr>
+    <tr>
+      <td
+        [attr.colspan]="i === 0 ? 2 : 1"
+        [ngStyle]="{
+          'text-align': 'center',
+          background: g.color
+        }"
+        *ngFor="let g of data; let i = index"
+      >
+        {{ g.name }}
+      </td>
+    </tr>
+  </table>
+</div>

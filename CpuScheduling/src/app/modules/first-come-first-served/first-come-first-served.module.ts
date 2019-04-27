@@ -7,7 +7,8 @@ import {
   MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { GanttModule } from '../utils/gantt/gantt.module';
@@ -22,7 +23,8 @@ import { GanttModule } from '../utils/gantt/gantt.module';
     MatInputModule,
     FormsModule,
     MatTooltipModule,
-    GanttModule
+    GanttModule,
+    MatProgressSpinnerModule
   ]
 })
 export class FirstComeFirstServedModule {}

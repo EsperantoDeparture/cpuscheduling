@@ -1,4 +1,11 @@
-<mat-card>
+<mat-card *ngIf="loading">
+  <mat-card-title>Cargando...</mat-card-title>
+  <mat-card-content>
+    <mat-spinner></mat-spinner>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!loading">
   <mat-card-title>Round Robin</mat-card-title>
   <mat-card-subtitle
     ><mat-form-field>

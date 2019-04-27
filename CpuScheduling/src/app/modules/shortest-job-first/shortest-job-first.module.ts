@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SjfInputFormComponent } from './components/forms/sjf-input-form/sjf-input-form.component';
 import { SjfSimulationComponent } from './components/sjf-simulation/sjf-simulation.component';
-import { MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatCardModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatTooltipModule,
+  MatInputModule,
+  MatCardModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { GanttModule } from '../utils/gantt/gantt.module';
 
@@ -16,7 +23,8 @@ import { GanttModule } from '../utils/gantt/gantt.module';
     MatInputModule,
     FormsModule,
     MatCardModule,
-    GanttModule
+    GanttModule,
+    MatProgressSpinnerModule
   ]
 })
-export class ShortestJobFirstModule { }
+export class ShortestJobFirstModule {}
