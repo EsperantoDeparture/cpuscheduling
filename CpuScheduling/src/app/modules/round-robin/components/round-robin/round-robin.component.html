@@ -33,10 +33,10 @@
       <tbody>
         <tr *ngFor="let process of processes">
           <td [ngStyle]="{ color: process.color }">{{ process.name }}</td>
-          <td>{{ process.burstTime }}</td>
-          <td>{{ process.arrivalTime }}</td>
-          <td>{{ process.waitingTime }}</td>
-          <td>{{ process.turnAroundTime }}</td>
+          <td>{{ process.burstTime | number: '1.0-2' }}</td>
+          <td>{{ process.arrivalTime | number: '1.0-2' }}</td>
+          <td>{{ process.waitingTime | number: '1.0-2' }}</td>
+          <td>{{ process.turnAroundTime | number: '1.0-2' }}</td>
         </tr>
       </tbody>
       <tfoot>
