@@ -7,6 +7,8 @@ import { FcfsInputFormComponent } from '../first-come-first-served/components/fo
 import { FcfsSimulationComponent } from '../first-come-first-served/components/fcfs-simulation/fcfs-simulation.component';
 import { RoundRobinComponent } from '../round-robin/components/round-robin/round-robin.component';
 import { RrInputFormComponent } from '../round-robin/components/forms/rr-input-form/rr-input-form.component';
+import { PriorityInputFormComponent } from '../priority/components/forms/priority-input-form/priority-input-form.component';
+import { PrioritySimulationComponent } from '../priority/components/priority-simulation/priority-simulation.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
   {
     path: 'rr-input-form',
     component: RrInputFormComponent
+  },
+  {
+    path: 'priority-input-form',
+    component: PriorityInputFormComponent
+  },
+  {
+    path: 'priority',
+    component: PrioritySimulationComponent
   }
 ];
 

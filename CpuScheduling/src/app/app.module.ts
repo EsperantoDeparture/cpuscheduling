@@ -20,6 +20,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FirstComeFirstServedModule } from './modules/first-come-first-served/first-come-first-served.module';
 import { RoundRobinModule } from './modules/round-robin/round-robin.module';
+import { PriorityModule } from './modules/priority/priority.module';
 
 @NgModule({
   declarations: [AppComponent, AlgorithmSelectionComponent, HeaderComponent],
@@ -36,7 +37,8 @@ import { RoundRobinModule } from './modules/round-robin/round-robin.module';
     MatTooltipModule,
     HttpClientModule,
     FirstComeFirstServedModule,
-    RoundRobinModule
+    RoundRobinModule,
+    PriorityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
