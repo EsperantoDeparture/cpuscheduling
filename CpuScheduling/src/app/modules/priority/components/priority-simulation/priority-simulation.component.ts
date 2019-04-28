@@ -100,6 +100,13 @@ export class PrioritySimulationComponent implements OnInit {
             }
           }
         }
+        i = 0;
+        for (const process of this.processes) {
+          process.burstTime = this.processesCopy[i].burstTime;
+          process.arrivalTime = this.processesCopy[i].arrivalTime;
+          process.turnAroundTime += process.waitingTime;
+          i++;
+        }
       } else {
         for (i = 0; i < this.processes.length; i++) {
           for (let j = 0; j < i; j++) {
@@ -115,13 +122,6 @@ export class PrioritySimulationComponent implements OnInit {
             width: 0
           });
         }
-      }
-      i = 0;
-      for (const process of this.processes) {
-        process.burstTime = this.processesCopy[i].burstTime;
-        process.arrivalTime = this.processesCopy[i].arrivalTime;
-        process.turnAroundTime += process.waitingTime;
-        i++;
       }
 
       const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
