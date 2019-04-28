@@ -7,9 +7,11 @@ import {
   MatButtonModule,
   MatCardModule,
   MatInputModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { GanttModule } from '../utils/gantt/gantt.module';
 
 @NgModule({
   declarations: [PriorityInputFormComponent, PrioritySimulationComponent],
@@ -20,7 +22,9 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatInputModule,
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    GanttModule,
+    MatProgressSpinnerModule
   ]
 })
 export class PriorityModule {}

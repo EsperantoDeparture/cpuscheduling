@@ -1,3 +1,55 @@
-<p>
-  priority-simulation works!
-</p>
+<mat-card *ngIf="loading">
+  <mat-card-title>Cargando...</mat-card-title>
+  <mat-card-content>
+    <mat-spinner></mat-spinner>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!loading">
+  <mat-card-title>Prioridad</mat-card-title>
+  <mat-card-subtitle>{{
+    preemptive ? 'Apropiativo' : 'No apropiativo'
+  }}</mat-card-subtitle>
+  <mat-card-content>
+    <table class="table" *ngIf="processes">
+      <thead>
+        <tr>
+          <th>Proceso</th>
+          <th>Tiempo de ráfaga</th>
+          <th>Tiempo de llegada</th>
+          <th>Prioridad</th>
+          <th>Tiempo de espera</th>
+          <th>Tiempo de entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let process of processes">
+          <td [ngStyle]="{ color: process.color }">{{ process.name }}</td>
+          <td>{{ process.burstTime | number: '1.0-2' }}</td>
+          <td>{{ process.arrivalTime | number: '1.0-2' }}</td>
+          <td>{{ process.priority | number: '1.0-2' }}</td>
+          <td>{{ process.waitingTime | number: '1.0-2' }}</td>
+          <td>{{ process.turnAroundTime | number: '1.0-2' }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Tiempo de espera promedio:</th>
+          <td colspan="5">{{ averageWaitingTime | number: '1.0-2' }}</td>
+        </tr>
+        <tr>
+          <th>Tiempo de entrega promedio:</th>
+          <td colspan="5">{{ averageTurnaroundTime | number: '1.0-2' }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <h2>Diagrama de Gantt</h2>
+    <div *ngIf="gantt && gantt.length > 0">
+      <app-gantt-diagram
+        (colorsChanged)="updateColors($event)"
+        [numberOfProcesses]="processes.length"
+        [data]="gantt"
+      ></app-gantt-diagram>
+    </div>
+  </mat-card-content>
+</mat-card>
