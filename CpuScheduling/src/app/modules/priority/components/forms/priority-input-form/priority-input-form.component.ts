@@ -15,7 +15,7 @@ export class PriorityInputFormComponent implements OnInit {
       priority: 1
     }
   ];
-  preemtive = false;
+  preemptive = false;
   constructor(private router: Router) {}
 
   ngOnInit() {}
@@ -37,7 +37,7 @@ export class PriorityInputFormComponent implements OnInit {
     this.router.navigate(['priority'], {
       queryParams: {
         processes: JSON.stringify(this.processes),
-        preemtive: this.preemtive
+        preemptive: this.preemptive
       }
     });
   }
