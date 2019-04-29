@@ -68,10 +68,6 @@ export class FcfsSimulationComponent implements OnInit {
           width: 0
         });
       }
-      const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
-      for (const g of this.gantt) {
-        g.width = (g.end / burstSum) * 100;
-      }
       // Fix gantt diagram
       for (let j = 0; j < this.gantt.length; j++) {
         if (j === 0) {

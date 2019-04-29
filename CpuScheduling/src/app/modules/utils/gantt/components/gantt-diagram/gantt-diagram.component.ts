@@ -51,6 +51,11 @@ export class GanttDiagramComponent implements OnInit {
     for (i = 0; i < d.length; i++) {
       d[i].color = p[d[i].name];
     }
+    // Calculate width (in percentage) for each section of the diagram
+    const burstSum = d.map(g => g.end).reduce((v1, v2) => v1 + v2);
+    for (const g of d) {
+      g.width = (g.end / burstSum) * 100;
+    }
     this._data = d;
     setTimeout(() => {
       this.colorsChanged.emit(p);

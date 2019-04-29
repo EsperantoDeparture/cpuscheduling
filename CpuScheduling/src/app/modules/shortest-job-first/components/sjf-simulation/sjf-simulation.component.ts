@@ -112,10 +112,6 @@ export class SjfSimulationComponent implements OnInit {
       this.averageWaitingTime =
         this.processes.map(p => p.waitingTime).reduce((v1, v2) => v1 + v2) /
         this.processes.length;
-      const burstSum = this.gantt.map(g => g.end).reduce((v1, v2) => v1 + v2);
-      for (const g of this.gantt) {
-        g.width = (g.end / burstSum) * 100;
-      }
       // Fix gantt diagram
       for (let j = 1; j < this.gantt.length; j++) {
         this.gantt[j].end += this.gantt[j - 1].end;
