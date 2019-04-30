@@ -51,10 +51,62 @@ export class GanttDiagramComponent implements OnInit {
     for (i = 0; i < d.length; i++) {
       d[i].color = p[d[i].name];
     }
+    // Merge gantt diagram
+    let merge: boolean;
+    while (true) {
+      merge = false;
+      let currentElement: {
+        name: string;
+        end: number;
+        color: string;
+        width: number;
+      };
+      let lastElement: {
+        name: string;
+        end: number;
+        color: string;
+        width: number;
+      };
+      i = 0;
+      for (const g of d) {
+        currentElement = g;
+        console.log(
+          lastElement ? lastElement.name : undefined,
+          currentElement.name
+        );
+        if (lastElement) {
+          if (lastElement.name === currentElement.name) {
+            d[i - 1].end += d[i].end;
+            d.splice(i, 1);
+            merge = true;
+            break;
+          }
+        }
+        lastElement = currentElement;
+        i++;
+      }
+      if (!merge) {
+        break;
+      }
+    }
+    // Fix gantt diagram
+    for (let j = 0; j < d.length; j++) {
+      if (j === 0) {
+        continue;
+      }
+      d[j].end += d[j - 1].end;
+    }
     // Calculate width (in percentage) for each section of the diagram
     const burstSum = d.map(g => g.end).reduce((v1, v2) => v1 + v2);
+    i = 0;
     for (const g of d) {
-      g.width = (g.end / burstSum) * 100;
+      if (i === 0) {
+        d[i].width = (g.end / burstSum) * 100;
+      } else {
+        d[i].width = ((d[i].end - d[i - 1].end) / burstSum) * 100;
+      }
+      console.log(d[i].width);
+      i++;
     }
     this._data = d;
     setTimeout(() => {

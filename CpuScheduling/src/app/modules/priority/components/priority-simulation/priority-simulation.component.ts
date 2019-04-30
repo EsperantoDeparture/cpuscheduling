@@ -91,6 +91,7 @@ export class PrioritySimulationComponent implements OnInit {
             currentProcess.burstTime > burst
               ? currentProcess.burstTime - burst
               : 0;
+          console.log(currentProcess.name, currentProcess.burstTime, burst);
           for (const process of this.processes) {
             if (process.arrivalTime) {
               process.arrivalTime -= burst;
@@ -127,52 +128,6 @@ export class PrioritySimulationComponent implements OnInit {
         }
       }
 
-      // Merge gantt diagram
-      let merge: boolean;
-      while (true) {
-        merge = false;
-        let currentElement: {
-          name: string;
-          end: number;
-          color: string;
-          width: number;
-        };
-        let lastElement: {
-          name: string;
-          end: number;
-          color: string;
-          width: number;
-        };
-        i = 0;
-        for (const g of this.gantt) {
-          currentElement = g;
-          console.log(
-            lastElement ? lastElement.name : undefined,
-            currentElement.name
-          );
-          if (lastElement) {
-            if (lastElement.name === currentElement.name) {
-              this.gantt[i - 1].end += this.gantt[i].end;
-              this.gantt.splice(i, 1);
-              merge = true;
-              break;
-            }
-          }
-          lastElement = currentElement;
-          i++;
-        }
-        if (!merge) {
-          break;
-        }
-      }
-
-      // Fix gantt diagram
-      for (let j = 0; j < this.gantt.length; j++) {
-        if (j === 0) {
-          continue;
-        }
-        this.gantt[j].end += this.gantt[j - 1].end;
-      }
       this.averageTurnaroundTime =
         this.processes.map(p => p.turnAroundTime).reduce((v1, v2) => v1 + v2) /
         this.processes.length;

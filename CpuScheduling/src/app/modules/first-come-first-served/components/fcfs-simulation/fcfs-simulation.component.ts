@@ -68,13 +68,6 @@ export class FcfsSimulationComponent implements OnInit {
           width: 0
         });
       }
-      // Fix gantt diagram
-      for (let j = 0; j < this.gantt.length; j++) {
-        if (j === 0) {
-          continue;
-        }
-        this.gantt[j].end += this.gantt[j - 1].end;
-      }
       this.averageTurnaroundTime =
         this.processes.map(p => p.turnAroundTime).reduce((v1, v2) => v1 + v2) /
         this.processes.length;
