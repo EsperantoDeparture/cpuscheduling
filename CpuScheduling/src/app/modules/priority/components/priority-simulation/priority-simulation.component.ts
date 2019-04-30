@@ -69,7 +69,7 @@ export class PrioritySimulationComponent implements OnInit {
               .map(p => p.priority)
           );
           const currentProcess = this.processes.find(
-            p => p.priority === maxPriority
+            p => p.priority === maxPriority && !!p.burstTime
           );
           let burst = this.getBurst();
           burst = burst !== -1 ? burst : currentProcess.burstTime;
