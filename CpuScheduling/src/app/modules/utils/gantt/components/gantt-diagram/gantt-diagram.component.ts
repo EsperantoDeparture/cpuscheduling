@@ -70,10 +70,6 @@ export class GanttDiagramComponent implements OnInit {
       i = 0;
       for (const g of d) {
         currentElement = g;
-        console.log(
-          lastElement ? lastElement.name : undefined,
-          currentElement.name
-        );
         if (lastElement) {
           if (lastElement.name === currentElement.name) {
             d[i - 1].end += d[i].end;
@@ -105,7 +101,6 @@ export class GanttDiagramComponent implements OnInit {
       } else {
         d[i].width = ((d[i].end - d[i - 1].end) / burstSum) * 100;
       }
-      console.log(d[i].width);
       i++;
     }
     this._data = d;

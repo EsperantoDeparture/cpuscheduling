@@ -91,7 +91,6 @@ export class PrioritySimulationComponent implements OnInit {
             currentProcess.burstTime > burst
               ? currentProcess.burstTime - burst
               : 0;
-          console.log(currentProcess.name, currentProcess.burstTime, burst);
           for (const process of this.processes) {
             if (process.arrivalTime) {
               process.arrivalTime -= burst;
