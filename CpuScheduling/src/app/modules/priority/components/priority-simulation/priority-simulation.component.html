@@ -7,9 +7,11 @@
 
 <mat-card *ngIf="!loading">
   <mat-card-title>Prioridad</mat-card-title>
-  <mat-card-subtitle>{{
-    preemptive ? 'Apropiativo' : 'No apropiativo'
-  }}</mat-card-subtitle>
+  <mat-card-subtitle>
+    <mat-checkbox [(ngModel)]="preemptive" (change)="ngOnInit()">{{
+      preemptive ? 'Apropiativo' : 'No apropiativo'
+    }}</mat-checkbox>
+  </mat-card-subtitle>
   <mat-card-content>
     <table class="table" *ngIf="processes">
       <thead>

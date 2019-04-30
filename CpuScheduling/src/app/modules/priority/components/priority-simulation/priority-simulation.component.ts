@@ -22,6 +22,7 @@ export class PrioritySimulationComponent implements OnInit {
     arrivalTime: number;
     waitingTime: number;
     turnAroundTime: number;
+    color: string;
     priority: number;
   }[];
   gantt: { name: string; end: number; color: string; width: number }[] = [];
@@ -41,11 +42,7 @@ export class PrioritySimulationComponent implements OnInit {
             })
           )
         : [];
-    });
-  }
 
-  ngOnInit(): void {
-    setTimeout(() => {
       this.processes = this.processes.sort(function(a, b) {
         const at1 = a.arrivalTime;
         const at2 = b.arrivalTime;
@@ -59,7 +56,13 @@ export class PrioritySimulationComponent implements OnInit {
         }
       });
       this.processesCopy = this.processes.map(process => ({ ...process }));
+    });
+  }
 
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.processes = this.processesCopy.map(process => ({ ...process }));
+      this.gantt = [];
       let i = 0;
       if (this.preemptive) {
         while (this.processes.some(process => !!process.burstTime)) {
@@ -121,6 +124,45 @@ export class PrioritySimulationComponent implements OnInit {
             color: this.processes[i].color,
             width: 0
           });
+        }
+      }
+
+      // Merge gantt diagram
+      let merge: boolean;
+      while (true) {
+        merge = false;
+        let currentElement: {
+          name: string;
+          end: number;
+          color: string;
+          width: number;
+        };
+        let lastElement: {
+          name: string;
+          end: number;
+          color: string;
+          width: number;
+        };
+        i = 0;
+        for (const g of this.gantt) {
+          currentElement = g;
+          console.log(
+            lastElement ? lastElement.name : undefined,
+            currentElement.name
+          );
+          if (lastElement) {
+            if (lastElement.name === currentElement.name) {
+              this.gantt[i - 1].end += this.gantt[i].end;
+              this.gantt.splice(i, 1);
+              merge = true;
+              break;
+            }
+          }
+          lastElement = currentElement;
+          i++;
+        }
+        if (!merge) {
+          break;
         }
       }
 
