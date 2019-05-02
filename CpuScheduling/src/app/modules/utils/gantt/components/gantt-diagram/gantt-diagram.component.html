@@ -8,7 +8,8 @@
       <td
         [ngStyle]="{
           width: (data[0].width / 2).toString() + '%',
-          'text-align': 'left'
+          'text-align': 'left',
+          'font-size': '8pt'
         }"
       >
         0
@@ -20,7 +21,10 @@
               i === 0
                 ? (g.width / 2).toString() + '%'
                 : g.width.toString() + '%',
-            'text-align': 'right'
+            'text-align': 'right',
+            'font-size': '8pt',
+            'font-stretch': 'ultra-condensed',
+            'font-family': 'League Mono Variable'
           }"
         >
           {{ g.end | number: '1.0-2' }}
