@@ -6,7 +6,9 @@
 </mat-card>
 
 <mat-card *ngIf="!loading">
-  <mat-card-title>SJF</mat-card-title>
+  <mat-card-title>{{
+    preemptive ? 'Shortest Remaining Time First' : 'Shortest Job First'
+  }}</mat-card-title>
   <mat-card-content>
     <table class="table" *ngIf="processes">
       <thead>

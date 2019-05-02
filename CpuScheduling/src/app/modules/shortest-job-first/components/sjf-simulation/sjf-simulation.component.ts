@@ -27,8 +27,10 @@ export class SjfSimulationComponent implements OnInit {
   averageTurnaroundTime: number;
   averageWaitingTime: number;
   loading = true;
+  preemptive: boolean;
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
+      this.preemptive = params['preemptive'] === 'true';
       this.processes = params['processes']
         ? JSON.parse(params['processes']).map(
             (p: { name: string; burstTime: number; arrivalTime: number }) => ({
@@ -72,8 +74,14 @@ export class SjfSimulationComponent implements OnInit {
         const currentProcess = this.processes.find(
           p => p.burstTime === minimumBurstTime
         );
-        let burst = this.getBurst();
-        burst = burst !== -1 ? burst : currentProcess.burstTime;
+        let burst: number;
+        if (this.preemptive) {
+          burst = this.getBurst();
+          burst = burst !== -1 ? burst : currentProcess.burstTime;
+        } else {
+          burst = currentProcess.burstTime;
+        }
+        console.log(this.processes);
         this.gantt.push({
           name: currentProcess.name,
           end:
@@ -89,7 +97,12 @@ export class SjfSimulationComponent implements OnInit {
             : 0;
         for (const process of this.processes) {
           if (process.arrivalTime) {
-            process.arrivalTime -= burst;
+            if (process.arrivalTime < burst) {
+              process.waitingTime = burst - process.arrivalTime;
+              process.arrivalTime = 0;
+            } else {
+              process.arrivalTime -= burst;
+            }
           } else if (
             !process.arrivalTime &&
             process.name !== currentProcess.name &&

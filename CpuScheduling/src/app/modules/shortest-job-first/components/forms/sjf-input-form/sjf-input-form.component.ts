@@ -14,6 +14,7 @@ export class SjfInputFormComponent implements OnInit {
       burstTime: 1
     }
   ];
+  preemptive = true;
   constructor(private router: Router) {}
 
   ngOnInit() {}
@@ -33,7 +34,8 @@ export class SjfInputFormComponent implements OnInit {
   sjf() {
     this.router.navigate(['sjf'], {
       queryParams: {
-        processes: JSON.stringify(this.processes)
+        processes: JSON.stringify(this.processes),
+        preemptive: this.preemptive
       }
     });
   }

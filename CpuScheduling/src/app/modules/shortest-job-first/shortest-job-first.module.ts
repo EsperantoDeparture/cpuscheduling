@@ -8,7 +8,8 @@ import {
   MatTooltipModule,
   MatInputModule,
   MatCardModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { GanttModule } from '../utils/gantt/gantt.module';
@@ -24,7 +25,8 @@ import { GanttModule } from '../utils/gantt/gantt.module';
     FormsModule,
     MatCardModule,
     GanttModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
   ]
 })
 export class ShortestJobFirstModule {}

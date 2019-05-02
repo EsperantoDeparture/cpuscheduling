@@ -16,7 +16,7 @@
             color="warn"
             (click)="remove(i)"
             matTooltip="Remover este proceso"
-            [ngStyle]="{'margin-right' : '5px'}"
+            [ngStyle]="{ 'margin-right': '5px' }"
           >
             <mat-icon svgIcon="remove"></mat-icon>
           </button>
@@ -47,6 +47,7 @@
         </td>
       </tr>
     </table>
+    <mat-checkbox [(ngModel)]="preemptive">Apropiativo</mat-checkbox>
   </mat-card-content>
   <mat-card-actions
     ><button
