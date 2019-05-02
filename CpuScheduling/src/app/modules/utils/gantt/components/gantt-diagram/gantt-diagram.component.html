@@ -43,5 +43,23 @@
         {{ g.name }}
       </td>
     </tr>
+    <tr>
+      <td
+        [attr.colspan]="i === 0 ? 2 : 1"
+        [ngStyle]="{
+          'text-align': 'center',
+          'font-size': '8pt',
+          'font-stretch': 'ultra-condensed',
+          'font-family': 'League Mono Variable'
+        }"
+        *ngFor="let g of data; let i = index"
+      >
+        {{
+          i == 0
+            ? (data[i].end | number: '1.0-2')
+            : (data[i].end - data[i - 1].end | number: '1.0-2')
+        }}
+      </td>
+    </tr>
   </table>
 </div>
