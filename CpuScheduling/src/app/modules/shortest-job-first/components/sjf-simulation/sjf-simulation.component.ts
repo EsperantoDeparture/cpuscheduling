@@ -81,7 +81,6 @@ export class SjfSimulationComponent implements OnInit {
         } else {
           burst = currentProcess.burstTime;
         }
-        console.log(this.processes);
         this.gantt.push({
           name: currentProcess.name,
           end:
