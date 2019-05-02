@@ -8,3 +8,25 @@ body {
 table {
   width: 100%;
 }
+
+// CUSTOM SCROLLBARS
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lighten($color: blue, $amount: 20%);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($color: blue, $amount: 20%);
+}

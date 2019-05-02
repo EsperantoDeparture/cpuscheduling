@@ -2,3 +2,8 @@ mat-card {
   width: 90%;
   margin: 0 auto;
 }
+
+mat-card-content {
+  min-width: 300px;
+  overflow-x: auto;
+}

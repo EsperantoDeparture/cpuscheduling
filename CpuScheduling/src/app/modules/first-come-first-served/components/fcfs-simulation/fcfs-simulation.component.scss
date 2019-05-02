@@ -2,6 +2,11 @@ td {
   text-align: center;
 }
 
+mat-card-content {
+  min-width: 300px;
+  overflow-x: auto;
+}
+
 .table {
   overflow: scroll;
   border-collapse: collapse;
